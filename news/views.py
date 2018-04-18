@@ -12,5 +12,5 @@ def column_detail(request, column_slug):
     return render(request, 'news/column.html', {'column': column})
 
 def article_detail(request, article_slug):
-    article = Article.objects.get(slug=article_slug)
+    article = Article.objects.filter(slug=article_slug)[0]
     return render(request, 'news/article.html', {'article': article})

@@ -5,7 +5,14 @@
 {% endblock title %}
 
 {% block content %}
-Column info：{{ column.intro }}
+Column info：{{ column.name }}
+    <br>
 Column list：
-More improvement
+    <ul>
+    {% for i in column.article_set.all %}
+        <li>
+            <a href="{{ i.get_absolute_url }}">{{ i.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock content %}
