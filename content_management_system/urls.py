@@ -15,9 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from DjangoUeditor import urls as DjangoUeditor_urls
-
+from django.urls import include, re_path
+from django.conf.urls import url
+from news.views import index as news_index
+from news.views import column_detail as news_column_detail
+from news.views import article_detail as news_article_detail
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('ueditor/', DjangoUeditor_urls),
+    # path('admin/', admin.site.urls),
+    # re_path(r'^$', 'news.views.index', name='index'),
+    # # path('',news_index, name = 'index'),
+    # # path('column/',news_column_detail,name='column'),
+    # # path('news/',news_article_detail,name='article'),
+    # # path('ueditor/', DjangoUeditor_urls),
+    # re_path(r'^column/(?P<column_slug>[^/]+)/$', 'news.views.column_detail', name='column'),
+    # re_path(r'^news/(?P<article_slug>[^/]+)/$', 'news.views.article_detail', name='article'),
+    url(r'^$', news_index, name='index'),
+    url(r'^column/(?P<column_slug>[^/]+)/$', news_column_detail, name='column'),
+    url(r'^news/(?P<article_slug>[^/]+)/$', news_article_detail, name='article'),
+
+    url(r'^admin/', admin.site.urls),
 ]

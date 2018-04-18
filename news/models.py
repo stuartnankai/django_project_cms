@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from DjangoUeditor.models import UEditorField
+from django.urls import reverse
 # Create your models here.
 
 @python_2_unicode_compatible
@@ -19,6 +20,9 @@ class Column(models.Model):
         verbose_name_plural = 'Columns'
         ordering = ['name']  # order by name
 
+    def get_absolute_url(self):
+        return reverse('column', args=(self.slug,))
+
 
 @python_2_unicode_compatible
 class Article(models.Model):
@@ -35,7 +39,8 @@ class Article(models.Model):
     # content = UEditorField('Content', height=300, width=1000,
     #                        default=u'', blank=True, imagePath="uploads/images/",
     #                        toolbars='besttome', filePath='uploads/files/')
-
+    def get_absolute_url(self):
+        return reverse('article', args=(self.slug,))
 
     published = models.BooleanField('isPublished', default=True)
 
