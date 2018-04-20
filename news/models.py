@@ -12,6 +12,9 @@ class Column(models.Model):
     slug = models.CharField('Column_site', max_length=256, db_index=True)
     intro = models.TextField('Column_intro', default='')
 
+    nav_display = models.BooleanField('Navigation', default=False)
+    home_display = models.BooleanField('Home Page', default=False)
+
     def __str__(self):
         return self.name
 
