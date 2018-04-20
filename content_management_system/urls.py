@@ -31,7 +31,8 @@ urlpatterns = [
     # re_path(r'^news/(?P<article_slug>[^/]+)/$', 'news.views.article_detail', name='article'),
     url(r'^$', news_index, name='index'),
     url(r'^column/(?P<column_slug>[^/]+)/$', news_column_detail, name='column'),
-    url(r'^news/(?P<article_slug>[^/]+)/$', news_article_detail, name='article'),
+    # url(r'^news/(?P<article_slug>[^/]+)/$', news_article_detail, name='article'),
+    url(r'^news/(?P<pk>\d+)/(?P<article_slug>[^/]+)/$', news_article_detail, name='article'),
 
     url(r'^admin/', admin.site.urls),
 ]

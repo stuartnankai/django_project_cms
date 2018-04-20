@@ -27,6 +27,7 @@ class Column(models.Model):
 @python_2_unicode_compatible
 class Article(models.Model):
     column = models.ManyToManyField(Column, verbose_name='Column_belongs')
+    # id = models.AutoField(primary_key=True)
 
     title = models.CharField('title', max_length=256)
     slug = models.CharField('site', max_length=256, db_index=True)
@@ -40,7 +41,7 @@ class Article(models.Model):
     #                        default=u'', blank=True, imagePath="uploads/images/",
     #                        toolbars='besttome', filePath='uploads/files/')
     def get_absolute_url(self):
-        return reverse('article', args=(self.slug,))
+        return reverse('article', args=(self.pk, self.slug))
 
     published = models.BooleanField('isPublished', default=True)
 
